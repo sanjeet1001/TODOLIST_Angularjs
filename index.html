@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-directive-template-url-fn-production</title>
+  
+
+	<script src="bower_components/jquery/dist/jquery.js" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="script.js"></script>
+ 	<link rel="stylesheet" href="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.min.css">
+<script src="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.js"></script>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.min.css">
+
+ 
+</head>
+<body ng-app="todoapp">
+	<div class="container" ng-controller="todoController">
+		<div class="row">
+			<div class="row">
+			  <div class="col-md-8 col-md-offset-2" style="margin-top:10px">
+				  <div class="row">
+				  	 <md-toolbar class="md-hue-2">
+				      <div class="md-toolbar-tools">
+				        
+				        <h2>
+				          <span>TODO LIST</span>
+				        </h2>
+				        <span flex=""></span>
+				        
+				      </div>
+				    </md-toolbar>
+				  </div>
+				  <div class="row">
+				  	<div class="col-md-12" ng-model="events" style="background-color:#f5f5f5; height:600px;border-color:#3F51B5; border-style:solid;border-top-style:none;">
+				  		
+				  	
+						  <div layout-gt-sm="row">
+						  	<div class="col-md-12" style="border-color:#3F51B5; border-style:solid;border-top-style:none;">
+						  		<form class="form-horizontal" ng-submit="addEvent()">
+						  			<div>
+								      <md-input-container>
+								        <label>Task Name</label>
+								        <input  required ng-model="name" type="text">
+								      </md-input-container>
+
+								      <md-input-container>
+								        <label>Assignee</label>
+								        <input ng-model="tassignee" required type="text">
+								      </md-input-container>
+
+								      <md-input-container>
+							            <label>Last date</label>
+							            <md-datepicker ng-model="tenddate" required></md-datepicker>
+							          </md-input-container>
+
+							          <md-button flex="10" type="submit" class="md-primary md-raised" ng-click="addData()" style="margin-top:-25px;">
+							          	Add
+							          </md-button>
+								    </div>
+								</form>
+						  	</div>
+						  	
+						  	
+						  </div>
+						  <div class="row" style="margin-left:5px; margin-right:5px; " id="scrollable-area">
+						  		<table  id="tbl" ng-table="tableParams" class="table" >
+						  			
+						  			<tr ng-repeat="event in $data">
+									    <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+									        {{event.tname}}</td>
+									    <td title="'Assignee'" filter="{ tassign: 'text'}"  sortable="'tassign'">
+									        {{event.tassign}}</td>
+									    <td title="'Last_Date'" filter="{ ldate: 'date'}"  sortable="'ldate'">
+									        {{event.ldate}}</td>
+									    <td title="'Status'" filter="{ status: 'text'}"  sortable="'status'">
+									        <md-button style="margin-top:-5px;"  id="{{'l'+$index}}" onclick="chsta(this.id)" class="md-warn md-raised md-hue-2" >{{event.status}}</md-button></td>
+									</tr>
+						  			
+								    
+								</table>
+						  	</div>
+				  	</div>
+				  </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+	<script src="bower_components/angular-animate/angular-animate.js"></script>
+	<script src="bower_components/angular-aria/angular-aria.js"></script>
+	<script src="bower_components/angular-material/angular-material.js"></script>
+	<script src="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.js"></script>
+	<script type="text/javascript">
+		function chsta(id){
+			var valuea = document.getElementById(id).value;
+			if(valuea == "complete"){
+				document.getElementById(id).innerHTML = "incomplete";
+			}
+			else if(valuea == "incomplete"){
+				document.getElementById(id).innerHTML = "complete";
+			}
+			else{
+				
+			}
+			
+		}
+	</script>
+
+</body>
+</html>
